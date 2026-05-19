@@ -11,9 +11,13 @@ import java.util.TimerTask;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinGson;
 import m1.dwa.cv.daos.BonusDaoJBDC;
+import m1.dwa.cv.daos.BonusDaoMock;
 import m1.dwa.cv.daos.PixelDaoJBDC;
+import m1.dwa.cv.daos.PixelDaoMock;
 import m1.dwa.cv.daos.SkillDaoJBDC;
+import m1.dwa.cv.daos.SkillDaoMock;
 import m1.dwa.cv.daos.UserDaoJDBC;
+import m1.dwa.cv.daos.UserDaoMock;
 import m1.dwa.cv.entities.GameState;
 import m1.dwa.cv.entities.Pixel;
 import m1.dwa.cv.entities.SkillState;
@@ -37,11 +41,11 @@ import m1.dwa.cv.websockets.PlayerSocketJavalin;
 
 public class Main {
     public static void main(String[] args) {
-        // Adapteurs entrant
-        UserDaoJDBC userDao = new UserDaoJDBC();
-        PixelDaoJBDC pixelDao = new PixelDaoJBDC();
-        BonusDaoJBDC bonusDao = new BonusDaoJBDC();
-        SkillDaoJBDC skillDao = new SkillDaoJBDC();
+        // Adapteurs entrant*
+        UserDaoMock userDao = new UserDaoMock();
+        PixelDaoMock pixelDao = new PixelDaoMock();
+        BonusDaoMock bonusDao = new BonusDaoMock();
+        SkillDaoMock skillDao = new SkillDaoMock();
 
         // Application
         List<Pixel> pixels = new ArrayList<>();
@@ -113,7 +117,9 @@ public class Main {
 
                             endpoint.handler.handle(context);
                         } catch (Exception e) {
-                            System.err.println(String.format("Erreur HTTP : \n\tfrom: %s\n\tpath: %s\n\tmessage: %s\n\tbody: %s", context.host(), context.path(), e.getMessage(), context.body()));
+                            System.err.println(
+                                    String.format("Erreur HTTP : \n\tfrom: %s\n\tpath: %s\n\tmessage: %s\n\tbody: %s",
+                                            context.host(), context.path(), e.getMessage(), context.body()));
                             context.status(500);
                             context.json(e.getMessage());
                         }
@@ -133,12 +139,16 @@ public class Main {
             });
 
             // https://javalin.io/documentation#configuring-the-json-mapper
-            // Le mapper par défaut lance une erreur si on parse le json dans un objet qui n'a pas pour chaque clef une propriétés associé.
-            // Dans playerSocketIn.onMessage(context) on route les messages selon la clef event, vers des fonctions spécialisé qui ont des arguments différent.
-            // => Avant d'avoir parse une première fois contexte.message pour lire "event", on ne peut pas savoir de quels paramètres on va avoir besoin.
+            // Le mapper par défaut lance une erreur si on parse le json dans un objet qui
+            // n'a pas pour chaque clef une propriétés associé.
+            // Dans playerSocketIn.onMessage(context) on route les messages selon la clef
+            // event, vers des fonctions spécialisé qui ont des arguments différent.
+            // => Avant d'avoir parse une première fois contexte.message pour lire "event",
+            // on ne peut pas savoir de quels paramètres on va avoir besoin.
             // => On change de mapper
             // https://javadoc.io/static/io.javalin/javalin/7.0.0-beta.2/io/javalin/json/JavalinGson.html
-            // On utilise gson car c'est l'exemple que javalin propose et il se trouve que javalin à déjà une classe mapper prête.
+            // On utilise gson car c'est l'exemple que javalin propose et il se trouve que
+            // javalin à déjà une classe mapper prête.
             config.jsonMapper(new JavalinGson());
         }).start(7070);
 
