@@ -1,0 +1,51 @@
+%% https://codemia.io/knowledge-hub/path/create_a_custom_event_in_java
+%% Créer pour chaque event :
+%% <nom-event>Event extends EventObject
+%% <nom-event>EventSource extends EventSource
+%% interface <nom-event>EventListener extends EventListener
+%% Ici un exemple avec deux events général 
+
+classDiagram
+    direction LR
+    
+    class EventSource~Listener~ {
+        <<abstract>>
+        List~Listener~ listeners
+        addListener(Listener listener)
+        removeListener(Listener listener)
+    }
+
+    class GameEventListener {
+        <<interface>>
+        onGameEvent(GameEvent event)
+    }
+    class GameEventSource {
+        emit(GameEvent event)
+    }
+    
+    class PlayerEventListener {
+        <<interface>>
+        onPlayerEvent(PlayerEvent event)
+    }
+    class PlayerEventSource {
+        emit(PlayerEvent event)
+    }
+
+    class Game {
+        GameEventSource gameEventSource
+        onPlayerEvent(PlayerEvent event)
+    }
+
+    class Player {
+        PlayerEventSource playerEventSource
+        onGameEvent(GameEvent event)
+    }
+
+    GameEventSource --> EventSource : extends
+    PlayerEventSource --> EventSource : extends
+
+    Game --> GameEventSource : uses
+    Game --> PlayerEventListener : implements
+
+    Player --> PlayerEventSource : uses
+    Player --> GameEventListener : implements

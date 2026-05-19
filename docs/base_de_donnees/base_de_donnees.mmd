@@ -1,0 +1,22 @@
+erDiagram 
+    User {
+        string pseudo PK
+        string hashedPassword
+        int age
+        string countryCode
+    }
+
+    Pixel {
+        int x PK
+        int y PK
+        int price
+        string colorHexadecimal
+        int age
+    }
+
+    Bonus {
+        int id
+    }
+
+    User }o--o{ Bonus : "Possède"
+    User ||--o{ Pixel : "Appartient à"

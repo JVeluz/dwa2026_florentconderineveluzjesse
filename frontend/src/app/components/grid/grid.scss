@@ -1,0 +1,37 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(50,12px);
+}
+.centering{
+    height: 100vh;
+    display: flex;
+    padding-top: 5vh;
+    align-items: start;
+    justify-content: center;
+}
+.pixel {
+  width: 12px;
+  height: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.pixel-info{
+    position: absolute;
+    z-index: 1;
+    background: white;
+    border: 1px solid grey;
+    white-space: nowrap;
+}
+.pixel-box{
+    position: relative;
+}
+.pixel-info p{
+    margin: 0;
+}
+.isComponent{
+    position: absolute;
+    z-index: 1;
+}
+.isComponent > * {
+    margin: 0px;
+}

@@ -1,0 +1,41 @@
+:root {
+  --bg: #f5ede0;
+  --panel: #fdf6ee;
+  --border: #d4b896;
+  --primary: #8b5e3c;
+  --primary-hover: #7a4f2e;
+  --text: #3d2b1f;
+  --text-light: #8a7060;
+  --accent: #6aab4f;
+  --gold: #e8a020;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text);
+}
+
+.isComponent {
+  background: var(--panel);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}

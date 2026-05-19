@@ -1,0 +1,47 @@
+:host {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+.mainContent{
+    display: flex;
+    flex-grow: 7;
+    width: 100%;
+    flex-basis: 3;
+}
+.gridHolder {
+  display: flex;
+  flex-grow: 3;
+  width: 100%;
+}
+.middleBottom{
+  display: flex;
+}
+.footer{
+  display: flex;
+  flex-grow: 1;
+}
+.rightHandler{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.rightHandlerP {
+  display: flex;
+  flex-grow: 1;
+}
+.middleHandler{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.leftHandler{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.leftHandlerP{
+  display: flex;
+  flex-grow: 1;
+}

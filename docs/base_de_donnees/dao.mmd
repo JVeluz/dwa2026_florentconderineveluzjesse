@@ -1,0 +1,38 @@
+classDiagram
+    direction LR
+
+    class DAO~T~ {
+        <<interface>>
+        every() T[]
+        find(int id) T
+        create(T object) T
+        update(T object) T
+        delete(T object)
+    }
+
+    class DAOUser {
+        <<interface>>
+        findByPseudo(String pseudo) User
+    }
+    
+    class DAOPixel {
+        <<interface>>
+    }
+
+    class DAOBonus {
+        <<interface>>
+    }
+    
+    DAO <|-- DAOUser : extends
+    DAO <|-- DAOPixel : extends
+    DAO <|-- DAOBonus : extends
+    
+    %% Implémentations JPA
+    DAOUser --|> DAOUserJPA : implements
+    DAOPixel --|> DAOPixelJPA : implements
+    DAOBonus --|> DAOBonusJPA : implements
+    
+    %% Implémentations Mock
+    DAOUser --|> DAOUserMock : implements
+    DAOPixel --|> DAOPixelMock : implements
+    DAOBonus --|> DAOBonusMock : implements

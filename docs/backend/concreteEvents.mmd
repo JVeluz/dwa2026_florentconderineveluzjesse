@@ -1,0 +1,69 @@
+classDiagram
+    direction LR
+
+    class ClickerEvent {
+        int playerId
+        int nClicks
+    }
+    class ClickerListener {
+        <<interface>>
+        onClicker(event)
+    }
+
+    class UseBonusEvent {
+        int playerId
+        int bonusId
+    }
+    class UseBonusListener {
+        <<interface>>
+        onUseBonus(event)
+    }
+
+    class PixelPurchaseEvent {
+        int playerId
+        int pixelX
+        int pixelY
+    }
+    class PixelPurchaseListener {
+        <<interface>>
+        onPixelPurchase(event)
+    }
+
+    class BonusPurchaseEvent {
+        int playerId
+        int bonusId
+    }
+    class BonusPurchaseListener {
+        <<interface>>
+        onBonusPurchase(event)
+    }
+
+    class PlayerUpdateEvent {
+        int playerId
+    }
+    class PlayerUpdateListener {
+        <<interface>>
+        onPlayerUpdate(event)
+    }
+    
+    class PixelsUpdateEvent {
+        Pixel[] pixels
+    }
+    class PixelsUpdateListener {
+        <<interface>>
+        onPixelsUpdate(event)
+    }
+
+    Game --> PlayerUpdateEvent : uses
+    Game --> PixelsUpdateEvent : uses
+    ClickerListener <-- Game : implements
+    UseBonusListener <-- Game : implements
+    PixelPurchaseListener <-- Game : implements
+    BonusPurchaseListener <-- Game : implements
+
+    Player --> ClickerEvent : uses
+    Player --> UseBonusEvent : uses
+    Player --> PixelPurchaseEvent : uses
+    Player --> BonusPurchaseEvent : uses
+    PlayerUpdateListener <-- Player : implements
+    PixelsUpdateListener <-- Player : implements

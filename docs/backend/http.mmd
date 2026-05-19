@@ -1,0 +1,44 @@
+classDiagram 
+    direction LR
+
+    class PixelHttp {
+        getPixels(request, response)
+        getPixel(request, response)
+    }
+    class PixelService {
+        getPixels() Pixel[]
+        getPixel(x, y) Pixel
+    }
+    PixelHttp --|> PixelService : uses
+    PixelService --|> PixelDAO : uses
+
+    class BonusHttp {
+        getBonuses(request, response)
+    }
+    class BonusService {
+        getBonuses() Bonus[]
+    }
+    BonusHttp --|> BonusService : uses
+    BonusService --|> BonusDAO : uses
+
+    class AccountHttp {
+        postLogin(request, response)
+        postRegister(request, response)
+    }
+    class AccountService {
+        login(String pseudo, String password) bool        
+        register(String pseudo, String password) bool
+    }
+    AccountHttp --|> AccountService : uses
+    AccountService --|> UserDAO : uses
+
+    class UserHttp {
+        getUsers(request, response)
+        getUser(request, response)
+    }
+    class UserService {
+        getUsers() User[]
+        getUser(int id) User
+    }
+    UserHttp --|> UserService : uses
+    UserService --|> UserDAO : uses

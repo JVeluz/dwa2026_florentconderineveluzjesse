@@ -1,0 +1,13 @@
+<div class = 'bonus-list'>
+    @if(bonuses$ | async; as bonuses) {
+        @for (bonus of bonuses; track bonus.id){
+        <div>
+            <h4>{{bonus.name}}</h4>
+            <h6>{{bonus.price}}</h6>
+            <p>{{bonus.description}}</p>
+            <button>Acheter</button>
+        </div>
+        }
+    }
+
+</div>

@@ -1,0 +1,7 @@
+.bonus-list {
+    display: flex;
+}
+:host{
+  display: flex;
+  flex-grow: 1;
+}

@@ -1,0 +1,38 @@
+<div class = "header">
+    <h4 (click)="onLoginPage()" [class.active]="activeTab === 'login'">Login</h4>
+    <h4 (click)="onRegisterPage()" [class.active]="activeTab === 'register'">Register</h4>
+</div>
+@if(activeTab==='login'){
+    <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
+        <div class ="input"> 
+            <label for="pseudo">Pseudo: </label>
+            <input type="text" formControlName="pseudo" required/>
+        </div>
+        <div class ="input">
+            <label for="password">Password: </label>
+            <input type="password" formControlName="password" required />
+        </div>
+            <button type="submit">Login</button>
+        
+    </form>   
+    @if(message!=''){
+        <p>{{message}}</p>
+    }
+}@else{
+    <form [formGroup]="formGroup" (ngSubmit)="onRegister()">
+        <div class ="input"> 
+            <label for="pseudo">Pseudo: </label>
+            <input type="text" formControlName="pseudo" required/>
+        </div>
+        <div class ="input"> 
+            <label for="password">Password: </label>
+            <input type="password" formControlName="password" required />
+        </div>
+            <button type="submit">Register</button>
+    </form>   
+    @if(message!=''){
+        <p>{{message}}</p>
+}
+}
+
+

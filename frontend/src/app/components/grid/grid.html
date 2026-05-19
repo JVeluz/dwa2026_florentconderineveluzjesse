@@ -1,0 +1,40 @@
+<div class="grid">
+
+  @if (pixels$ | async; as pixels) {
+    @for (pixel of pixels; track pixel.id) {
+
+      <div
+        class="pixel"
+        (click)="onClick(pixel)" [style.backgroundColor]="pixel.colorHexadecimal">
+      </div>
+
+    }
+  }
+
+</div>
+@if (selectedPixel) {
+  <div class="isComponent">
+
+    <p>X: {{ selectedPixel.x }}</p>
+    <p>Y: {{ selectedPixel.y }}</p>
+    <p>Price: {{ selectedPixel.price }}</p>
+    <p>Color: {{ selectedPixel.colorHexadecimal }}</p>
+    <p>Age: {{ selectedPixel.oldness }}</p>
+
+    <p>
+      Owner:
+      {{ selectedPixel.ownerId === -1 ? 'No owner' : getOwnerPseudo(selectedPixel.ownerId) }}
+    </p>
+
+      <button
+        (click)="purchasePixel([selectedPixel], selectedColor)">
+        Acheter
+      </button><br/>
+      <input type="color" [(ngModel)]="selectedColor">
+      <button (click)="purchasePixel([selectedPixel], selectedColor)">
+        Change color
+      </button>
+    
+    
+    </div>
+  }

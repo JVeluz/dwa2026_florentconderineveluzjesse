@@ -1,0 +1,20 @@
+
+@if(player$ | async; as player){
+    <div class="playerCard">
+
+        <h3>user: {{ player$.value?.pseudo }}</h3>
+
+        <div class="stat">
+            cookies: {{ player$.value?.credits }}
+        </div>
+
+        <div class="stat">
+            <!-- pixels: {{ player$.value?.pixels }} pixels -->
+        </div>
+
+        <div class="stat">
+            clicks: {{ player$.value?.creditsPerTick }} clicks/s
+        </div>
+    </div>
+}
+

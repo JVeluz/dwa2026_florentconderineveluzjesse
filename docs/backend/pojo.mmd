@@ -1,0 +1,25 @@
+classDiagram
+    class User {
+        int id
+        String pseudo
+        String password
+        String age
+        String country
+        Pixel[] pixels
+        Bonus[] bonuses
+    }
+
+    class Pixel {
+        int id
+        int x
+        int y
+        int price
+        String colorHexadecimal
+        int oldness
+    }
+
+    class Bonus {
+        int id
+        String name
+        String description
+    }
